@@ -3,9 +3,8 @@ Codes and trained models for Switch-NeRF will be released here.
 
 Cite
 
-```
-@inproceedings{
-  mi2023switchnerf,
+```bibtex
+@inproceedings{mi2023switchnerf,
   title={Switch-NeRF: Learning Scene Decomposition with Mixture of Experts for Large-scale Neural Radiance Fields},
   author={Zhenxing Mi and Dan Xu},
   booktitle={International Conference on Learning Representations (ICLR)},
