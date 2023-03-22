@@ -6,7 +6,7 @@ This is only a beta release and certainly contains bugs. We release it in respon
 
 # Installation
 
-The main dependencies are in the `requirements.txt`. We use [this version](https://github.com/microsoft/tutel/tree/56dbd664341cf6485c9fa292955f77d3ac918a65) of Tutel in for MoE layers.
+The main dependencies are in the `requirements.txt`. We use [this version](https://github.com/microsoft/tutel/tree/56dbd664341cf6485c9fa292955f77d3ac918a65) of Tutel in for MoE layers. Please follow the instructions in Tutel to install it. We will also add detailed documentation about the Tutel installation.
 
 Cite
 
