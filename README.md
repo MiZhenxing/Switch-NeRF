@@ -1,7 +1,7 @@
 # Switch-NeRF
 Codes for Switch-NeRF are released here.
 
-# Attention
+# Warning
 This is only a beta release and certainly contains bugs. We release it in response to the requests of the community. We will continue improving the codes, writing detailed documents and add trained models. It will take about 1 week.
 
 # Installation
