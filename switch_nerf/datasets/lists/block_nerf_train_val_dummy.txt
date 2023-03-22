@@ -1,0 +1,4 @@
+waymo_block_nerf_mission_bay_train.tfrecord-00000-of-01063
+waymo_block_nerf_mission_bay_train.tfrecord-00001-of-01063
+waymo_block_nerf_mission_bay_validation.tfrecord-00000-of-00373
+waymo_block_nerf_mission_bay_validation.tfrecord-00001-of-00373

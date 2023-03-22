@@ -1,0 +1,91 @@
+data_type: "block_nerf"
+appearance_dim: 48
+val_scale_factor: 1
+use_mip: True
+use_moe: True
+no_bg_nerf: True
+pos_xyz_dim: 12
+pos_dir_dim: 4
+fine_samples: 513
+coarse_samples: 513
+training_step_fn: "_training_step_mip"
+nerfmoe_class_name: "MipNeRFMoE"
+
+model:
+  layer_num_main: 3
+  sigma_tag: 0
+  dir_tag: 1
+  color_tag: 2
+
+  layers:
+    "xyz":
+      in_ch: 75 # 3 + 12 * 3 * 2
+      h_ch: 0
+      out_ch: 512
+      num: 1
+      type: "mlp"
+      act: "none"
+    
+    "0":
+      in_ch: 512
+      h_ch: 512
+      out_ch: 512
+      num: 7
+      skips: [3]
+      init_factor: 1.0
+      type: "moe"
+      act: "relu"
+
+      # gate
+      gate_type: "top"
+      k: 1
+      fp32_gate: True
+      gate_dim: 512
+
+    "1": # xyz_encoding_final
+      in_ch: 512
+      h_ch: 0
+      out_ch: 512
+      num: 1
+      type: "mlp"
+      act: "none"
+
+    "2": # dir_a_encoding
+      in_ch: 587 # 512 + 27 + 48
+      h_ch: 0
+      out_ch: 128
+      num: 1
+      type: "mlp"
+      act: "relu"
+
+    sigma: # sigma
+      in_ch: 512
+      h_ch: 0
+      out_ch: 1
+      num: 1
+      type: "mlp"
+      act: "none"
+
+    color: # rgb
+      in_ch: 128
+      h_ch: 0
+      out_ch: 3
+      num: 1
+      type: "mlp"
+      act: "none"
+    
+    moe_external_gate:
+      in_ch: 512
+      h_ch: 512
+      out_ch: 512
+      num: 2
+      type: "mlp"
+      act: "none"
+      out_skip: False
+
+    gate_input_norm:
+      in_ch: 512
+      h_ch: 0
+      out_ch: 0
+      num: 1
+      type: "layernorm"

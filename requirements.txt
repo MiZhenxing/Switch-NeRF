@@ -1,0 +1,26 @@
+# nerf_3_8 python 3.8
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.10.0+cu111
+torchvision==0.11.0+cu111
+torchaudio==0.10.0
+tqdm
+ConfigArgParse
+# deepspeed
+einops
+imageio
+imageio-ffmpeg
+matplotlib
+tensorboard
+# tensorboard==2.7
+PyYAML
+npy_append_array
+parscript
+opencv-python
+setuptools==58.0.4
+lpips==0.1.4
+# tutel
+fairscale
+protobuf==3.20.1
+torch_tb_profiler
+timm
+plyfile

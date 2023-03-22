@@ -1,0 +1,82 @@
+ray_altitude_range: [-14, 70]
+appearance_dim: 48
+
+nerfmoe_class_name: "NeRFMoE"
+model:
+  layer_num_main: 3
+  sigma_tag: 0
+  dir_tag: 1
+  color_tag: 2
+
+  layers:
+    "xyz":
+      in_ch: 75 # 3 + 12 * 3 * 2
+      h_ch: 0
+      out_ch: 256
+      num: 1
+      type: "mlp"
+      act: "none"
+
+    "0":
+      in_ch: 256
+      h_ch: 256
+      out_ch: 256
+      num: 7
+      skips: [3]
+      init_factor: 1.0
+      type: "moe"
+      act: "relu"
+
+      # gate
+      gate_type: "top"
+      k: 1
+      fp32_gate: True
+      gate_dim: 256
+      
+    "1": # xyz_encoding_final
+      in_ch: 256
+      h_ch: 0
+      out_ch: 256
+      num: 1
+      type: "mlp"
+      act: "none"
+
+    "2": # dir_a_encoding
+      in_ch: 331 # 256 + 27 + 48
+      h_ch: 0
+      out_ch: 128
+      num: 1
+      type: "mlp"
+      act: "relu"
+
+    sigma: # sigma
+      in_ch: 256
+      h_ch: 0
+      out_ch: 1
+      num: 1
+      type: "mlp"
+      act: "none"
+
+    color: # rgb
+      in_ch: 128
+      h_ch: 0
+      out_ch: 3
+      num: 1
+      type: "mlp"
+      act: "none"
+    
+    moe_external_gate:
+      in_ch: 256
+      h_ch: 256
+      out_ch: 256
+      num: 2
+      type: "mlp"
+      act: "none"
+      out_skip: False
+
+    gate_input_norm:
+      in_ch: 256
+      h_ch: 0
+      out_ch: 0
+      num: 1
+      type: "layernorm"
