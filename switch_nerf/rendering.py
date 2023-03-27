@@ -240,7 +240,7 @@ def _get_results(nerf: nn.Module,
         fine_z_vals = _sample_pdf(z_vals_mid, results['weights_coarse'][:, 1:-1].detach(),
                                   hparams.fine_samples // 2 if flip else hparams.fine_samples, det=(perturb == 0))
 
-        if hparams.use_cascade and (not hparams.separate_coarse_fine_zvals):
+        if hparams.use_cascade:
             fine_z_vals, _ = torch.sort(torch.cat([z_vals, fine_z_vals], -1), -1)
 
         del results['weights_coarse']

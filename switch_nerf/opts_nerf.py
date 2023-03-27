@@ -14,6 +14,8 @@ def get_opts_base():
     Should be set to a non-existent path when first created, and can then be reused by subsequent training runs once all chunks are written""")
     parser.add_argument('--num_chunks', type=int, default=200,
                         help='number of shuffled chunk files to write to disk. Each chunk should be small enough to fit into CPU memory')
+    parser.add_argument('--generate_chunk', default=False, action='store_true',
+                        help='only generate chunks')
     parser.add_argument('--disk_flush_size', type=int, default=10000000)
     parser.add_argument('--train_every', type=int, default=1,
                         help='if set to larger than 1, subsamples each n training images')
@@ -186,8 +188,6 @@ def get_opts_base():
 
     parser.add_argument("--use_moe_external_gate", action='store_true', default=False, 
                         help='''use a small network as a gate in MoE layers.''')
-    parser.add_argument("--moe_external_gate_input_name", type=str, default="xyz_h",
-                        help='the input of moe gate')
     parser.add_argument("--use_gate_input_norm", action='store_true', default=False, 
                         help='use norm layer for gate input, support layernorm and batchnorm')
 
@@ -234,6 +234,8 @@ def get_opts_base():
     parser.add_argument("--compute_memory", action='store_true', default=False, 
                         help='log the max memory in each step')
 
+    parser.add_argument("--render_image_fn_name", type=str, default=None,
+                        help='the name of render_image function used in evaluation')
     # nerf
     parser.add_argument('--scale_factor', type=int, default=1,
                         help='downsamples all images if greater than 1')
@@ -285,11 +287,7 @@ def get_opts_base():
 
     parser.add_argument("--use_random_background_color", default=False, action='store_true',
                         help='''use_random_background_color when rendering''')
-    
-    parser.add_argument("--use_moe_external_gate", action='store_true', default=False, 
-                        help='''use a small network as a gate in MoE layers.''')
-    parser.add_argument("--moe_external_gate_input_name", type=str, default="xyz_h",
-                        help='the input of moe gate')
+
     return parser
 
 

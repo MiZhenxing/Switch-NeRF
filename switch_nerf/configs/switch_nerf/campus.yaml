@@ -1,6 +1,7 @@
 ray_altitude_range: [3, 132]
 appearance_dim: 48
 
+data_type: "mega_nerf"
 nerfmoe_class_name: "NeRFMoE"
 model:
   layer_num_main: 3

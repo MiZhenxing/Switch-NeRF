@@ -33,15 +33,15 @@ from switch_nerf.datasets.nerf_data.nerf_loader import NeRFDataset, NeRFDatasetT
 from switch_nerf.opts_nerf import get_nerf_dataset_args
 from switch_nerf.metrics import psnr, ssim, lpips, psnr_mask, ssim_mask
 from switch_nerf.misc_utils import main_print, main_tqdm, main_log, count_parameters
-from switch_nerf.models.model_utils import get_nerf, get_bg_nerf, model_scale_lecun_normal_init
+from switch_nerf.models.model_utils import get_nerf, get_bg_nerf
 from switch_nerf.ray_utils import get_rays, get_ray_directions
 from switch_nerf.rendering import render_rays
-from modules.tutel_moe_ext import tutel_system
-from utils.logger import setup_logger
+from switch_nerf.modules.tutel_moe_ext import tutel_system
+from switch_nerf.utils.logger import setup_logger
 import subprocess
-from utils.functions import DictAverageMeter, voc_palette, DictAverageMeter1
+from switch_nerf.utils.functions import DictAverageMeter, voc_palette, DictAverageMeter1
 import time
-from modules.tutel_moe_ext.tutel_moe_layer_nobatch import MOELayer
+from switch_nerf.modules.tutel_moe_ext.tutel_moe_layer_nobatch import MOELayer
 
 from fairscale.optim.grad_scaler import ShardedGradScaler
 from fairscale.optim import OSS
@@ -54,7 +54,7 @@ from torch.utils.data import Subset
 import json
 from switch_nerf.rendering_mip import render_rays as render_rays_mip
 
-from modules.tutel_moe_ext.tutel_fast_dispatch_nobatch import one_hot_with_dtype
+from switch_nerf.modules.tutel_moe_ext.tutel_fast_dispatch_nobatch import one_hot_with_dtype
 
 class Runner:
     def __init__(self, hparams: Namespace, set_experiment_path: bool = True):
@@ -519,10 +519,20 @@ class Runner:
             # but it would make determinism trickier
             if 'RANK' in os.environ and (not self.is_local_master):
                 dist.barrier()
-            dataset = FilesystemDataset(self.train_items, self.near, self.far, self.ray_altitude_range,
-                                        self.hparams.center_pixels, self.device,
-                                        [Path(x) for x in sorted(self.hparams.chunk_paths)], self.hparams.num_chunks,
-                                        self.hparams.train_scale_factor, self.hparams.disk_flush_size, self.hparams.shuffle_chunk)
+            
+            if self.hparams.data_type == "block_nerf":
+                from switch_nerf.datasets.block_filesystem_dataset import BlockFilesystemDataset
+                dataset = BlockFilesystemDataset(data_path=self.hparams.dataset_path, near=self.near, far=self.far, 
+                    device=self.device, scale_factor=self.hparams.train_scale_factor,
+                    list_path=self.hparams.block_train_list_path, id_map_path=self.hparams.block_image_hash_id_map_path,                    
+                    chunk_paths=[Path(x) for x in sorted(self.hparams.chunk_paths)], 
+                    num_chunks=self.hparams.num_chunks, disk_flush_size=self.hparams.disk_flush_size,
+                    shuffle_chunk=self.hparams.shuffle_chunk)
+            else:
+                dataset = FilesystemDataset(self.train_items, self.near, self.far, self.ray_altitude_range,
+                                            self.hparams.center_pixels, self.device,
+                                            [Path(x) for x in sorted(self.hparams.chunk_paths)], self.hparams.num_chunks,
+                                            self.hparams.train_scale_factor, self.hparams.disk_flush_size, self.hparams.shuffle_chunk)
 
             
             if self.hparams.ckpt_path is not None and self.hparams.resume_ckpt_state:
@@ -534,6 +544,10 @@ class Runner:
                                     self.hparams.center_pixels, self.device)
         else:
             raise Exception('Unrecognized dataset type: {}'.format(self.hparams.dataset_type))
+        
+        if self.hparams.generate_chunk:
+            main_log(f"Chunk generated")
+            return
 
         if self.is_master:
             pbar = tqdm(total=self.hparams.train_iterations)

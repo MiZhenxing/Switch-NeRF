@@ -4,13 +4,13 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from switch_nerf.models.nerf import Embedding, ShiftedSoftplus, MipEmbedder, trunc_exp
-from modules.tutel_moe_ext.tutel_moe_layer_nobatch import MOELayer
-from modules.tutel_moe_ext.tutel_moe_nobatch import moe_layer, SingleExpert
+from switch_nerf.models.nerf import Embedding, ShiftedSoftplus, MipEmbedder
+from switch_nerf.modules.tutel_moe_ext.tutel_moe_layer_nobatch import MOELayer
+from switch_nerf.modules.tutel_moe_ext.tutel_moe_nobatch import moe_layer, SingleExpert
 
-from modules.tutel_moe_ext.torch_moe_layer_nobatch import MOELayer as MOELayer_torch
-from modules.tutel_moe_ext.torch_moe_layer_nobatch import SingleExpert as SingleExpert_torch
-from modules.tutel_moe_ext.torch_moe_layer_nobatch import Mlp as Mlp_torch
+from switch_nerf.modules.tutel_moe_ext.torch_moe_layer_nobatch import MOELayer as MOELayer_torch
+from switch_nerf.modules.tutel_moe_ext.torch_moe_layer_nobatch import SingleExpert as SingleExpert_torch
+from switch_nerf.modules.tutel_moe_ext.torch_moe_layer_nobatch import Mlp as Mlp_torch
 import copy
 
 class Mlp(nn.Module):
