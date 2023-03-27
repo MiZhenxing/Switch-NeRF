@@ -1,6 +1,6 @@
 # Switch-NeRF: Learning Scene Decomposition with Mixture of Experts for Large-scale Neural Radiance Fields 
 
-### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints]() | [Visualizer]()
+### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://github.com/MiZhenxing/Switch-NeRF-ckpt) | [Visualizer]()
 
 ## Warning
 This is only a beta release and certainly contains bugs. We release it in response to the requests of the community. We will continue improving the codes, writing detailed documents and add trained models. It will take about 1 week.
@@ -60,7 +60,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --use_en
 
 ## Testing
 
-We provide checkpoints in this [repository]().
+We provide checkpoints in this [repository](https://github.com/MiZhenxing/Switch-NeRF-ckpt).
 
 Test on the Building scene in Mega-NeRF dataset.
 
