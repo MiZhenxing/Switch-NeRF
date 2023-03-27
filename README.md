@@ -1,6 +1,6 @@
 # Switch-NeRF: Learning Scene Decomposition with Mixture of Experts for Large-scale Neural Radiance Fields 
 
-### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://github.com/MiZhenxing/Switch-NeRF-ckpt) | [Visualizer]()
+### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://github.com/MiZhenxing/Switch-NeRF-ckpt) | [Visualizer](https://github.com/MiZhenxing/alpha_visualizer)
 
 ## Warning
 This is only a beta release and certainly contains bugs. We release it in response to the requests of the community. We will continue improving the codes, writing detailed documents and add trained models. It will take about 1 week.
@@ -78,7 +78,7 @@ You can also use less GPUs.
 
 ## Visualization
 
-We provide a simple point cloud visualizer in this [repository](). You can use the commands below to create point clouds and visualize them with transparency. You can use [Meshlab](https://www.meshlab.net) to visualize the point clouds without transparency. Meshlab can also visualize the transparency with "Shading: Dot Decorator" selected but the visualization is not clear enough.
+We provide a simple point cloud visualizer in this [repository](https://github.com/MiZhenxing/alpha_visualizer). You can use the commands below to create point clouds and visualize them with transparency. You can use [Meshlab](https://www.meshlab.net) to visualize the point clouds without transparency. Meshlab can also visualize the transparency with "Shading: Dot Decorator" selected but the visualization is not clear enough.
 
 Generate point clouds:
 ```sh
