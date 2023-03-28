@@ -2,8 +2,9 @@
 
 ### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://github.com/MiZhenxing/Switch-NeRF-ckpt) | [Visualizer](https://github.com/MiZhenxing/alpha_visualizer)
 
-## Warning
-This is only a beta release and certainly contains bugs. We release it in response to the requests of the community. We will continue improving the codes, writing detailed documents and add trained models. It will take about 1 week.
+## Updation
+
+- 2023-03-28, release the checkpoints and codes for three datasets.
 
 ## Installation
 
