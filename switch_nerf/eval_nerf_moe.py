@@ -4,7 +4,7 @@ import torch
 from torch.distributed.elastic.multiprocessing.errors import record
 
 from switch_nerf.opts_nerf import get_opts_base
-from switch_nerf.runner_nerf import Runner
+from switch_nerf.runner import Runner
 
 
 def _get_eval_opts() -> Namespace:

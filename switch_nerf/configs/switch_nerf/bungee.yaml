@@ -2,7 +2,7 @@ data_type: "nerf"
 dataset_type: "bungee"
 # white_bkgd: True
 appearance_dim: 0
-use_viewdirs: True
+# use_viewdirs: True
 use_moe: True
 use_mip: True
 no_bg_nerf: True

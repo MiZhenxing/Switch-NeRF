@@ -3017,7 +3017,7 @@ class Runner:
     
     @staticmethod
     def _create_result_image_nerf(rgbs: torch.Tensor, result_rgbs: torch.Tensor, result_depths: torch.Tensor, colormap=cv2.COLORMAP_INFERNO) -> Image:
-        depth_vis = Runner.visualize_scalars(torch.log(result_depths + 1e-8).view(rgbs.shape[0], rgbs.shape[1]).cpu(), colormap=colormap)
+        depth_vis = Runner.visualize_scalars_nerf(torch.log(result_depths + 1e-8).view(rgbs.shape[0], rgbs.shape[1]).cpu(), colormap=colormap)
         images = (rgbs.numpy() * 255, result_rgbs.numpy() * 255, depth_vis)
         return Image.fromarray(np.concatenate(images, 1).astype(np.uint8)), [Image.fromarray(i.astype(np.uint8)) for i in images]
 
@@ -3035,6 +3035,21 @@ class Runner:
 
         scalar_tensor = ((1 - scalar_tensor) * 255).byte().numpy()  # inverse heatmap
         return cv2.cvtColor(cv2.applyColorMap(scalar_tensor, cv2.COLORMAP_INFERNO), cv2.COLOR_BGR2RGB)
+    
+    @staticmethod
+    def visualize_scalars_nerf(scalar_tensor: torch.Tensor, colormap=cv2.COLORMAP_INFERNO) -> np.ndarray:
+        to_use = scalar_tensor.view(-1)
+        while to_use.shape[0] > 2 ** 24:
+            to_use = to_use[::2]
+
+        mi = torch.quantile(to_use, 0.05)
+        ma = torch.quantile(to_use, 0.95)
+
+        scalar_tensor = (scalar_tensor - mi) / max(ma - mi, 1e-8)  # normalize to 0~1
+        scalar_tensor = scalar_tensor.clamp_(0, 1)
+
+        scalar_tensor = ((1 - scalar_tensor) * 255).byte().numpy()  # inverse heatmap
+        return cv2.cvtColor(cv2.applyColorMap(scalar_tensor, colormap), cv2.COLOR_BGR2RGB)
 
     def _get_image_metadata(self) -> Tuple[List[ImageMetadata], List[ImageMetadata]]:
         dataset_path = Path(self.hparams.dataset_path)

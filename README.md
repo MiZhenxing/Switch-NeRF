@@ -20,7 +20,11 @@ Please follow the instructions in the code of [Mega-NeRF](https://github.com/cmu
 
 Please follow the website of [Block-NeRF](https://waymo.com/intl/zh-cn/research/block-nerf) to download the raw Mission Bay dataset.
 
-## Configure
+### Bungee-NeRF
+
+Please follow the [BungeeNeRF](https://github.com/city-super/BungeeNeRF) to download its two scenes.
+
+<!-- ## Configure -->
 
 <!-- We use [yaml](https://yaml.org/) file to set options in our codes. Several key options are explained below. Other options are self-explanatory in the codes. Before running our codes, you may need to change the `true_gpu`, `data: root_dir` and `model_path` (only for testing). -->
 
@@ -57,6 +61,14 @@ Then we train the model on the Mission Bay scene and the generated chunks. The `
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --use_env --master_port=12345 --nproc_per_node=8 -m switch_nerf.train --config=switch_nerf/configs/switch_nerf/mission_bay.yaml --use_moe --exp_name=/your/absolute/experiment/path --dataset_path=/your/absolute/scene/path/Mission_Bay/v1.0 --block_train_list_path=switch_nerf/datasets/lists/block_nerf_train_val.txt --block_image_hash_id_map_path=switch_nerf/datasets/lists/block_nerf_id_map.json --chunk_paths=/your/absolute/chunk/path/mission_bay_chunk_radii_1 --no_bg_nerf --near=0.01 --far=10.0 --use_balance_loss --i_print=1000 --batch_size=13312 --moe_expert_type=expertmlp --moe_train_batch --moe_test_batch --model_chunk_size=212992 --coarse_samples=257 --fine_samples=257 --moe_capacity_factor=1.0 --batch_prioritized_routing --moe_l_aux_wt=0.0005 --amp_use_bfloat16 --use_moe_external_gate --use_gate_input_norm --use_sigma_noise --sigma_noise_std=1.0
 ```
 
+### Bungee-NeRF scenes
+
+We need not to generate chunks for Bungee-NeRF scenes. We provide the example commands to train the model on Transamerica scene.
+
+```sh
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --use_env --master_port=12345 --nproc_per_node=4 -m mega_nerf.train_nerf_moe --config=switch_nerf/configs/switch_nerf/bungee.yaml --use_moe --exp_name=/your/absolute/experiment/path --dataset_path=/your/absolute/scene/path/multiscale_google_Transamerica --use_balance_loss --i_print=1000 --batch_size=4096 --moe_expert_type=expertmlp --moe_train_batch --moe_test_batch --model_chunk_size=65536 --moe_capacity_factor=1.0 --batch_prioritized_routing --moe_l_aux_wt=0.0005 --no_amp --use_moe_external_gate --use_gate_input_norm --use_sigma_noise_std --sigma_noise_std=1.0 --moe_expert_num=4
+```
+The two scenes in Bungee-NeRF use the same configure file.
 
 ## Testing
 
@@ -73,8 +85,13 @@ Test on the the Mission Bay scene in Block-NeRF dataset.
 ```sh
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --use_env --master_port=12345 --nproc_per_node=8 -m switch_nerf.eval_image_blocknerf --config=switch_nerf/configs/switch_nerf/mission_bay.yaml --use_moe --exp_name=/your/absolute/experiment/path --dataset_path=/your/absolute/scene/path/Mission_Bay/v1.0 --block_val_list_path=switch_nerf/datasets/lists/block_nerf_val.txt --block_train_list_path=switch_nerf/datasets/lists/block_nerf_train_val.txt --block_image_hash_id_map_path=switch_nerf/datasets/lists/block_nerf_id_map.json --i_print=1000 --near=0.01 --far=10.0 --moe_expert_type=seqexperts --model_chunk_size=212992 --coarse_samples=513 --fine_samples=513 --ckpt_path=/your/absolute/ckpt/path/mission_bay.pt --expertmlp2seqexperts --use_moe_external_gate --use_gate_input_norm --set_timeout --image_pixel_batch_size=8192
 ```
-
 You can also use less GPUs.
+
+Test on the Transamerica scene in Bungee-NeRF dataset.
+
+```sh
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --use_env --master_port=12345 --nproc_per_node=4 -m switch_nerf.eval_nerf_moe --config=switch_nerf/configs/switch_nerf/bungee.yaml --use_moe --exp_name=/your/absolute/experiment/path --dataset_path=/your/absolute/scene/path/multiscale_google_Transamerica --i_print=1000 --batch_size=4096 --moe_expert_type=seqexperts --model_chunk_size=65536 --ckpt_path=/your/absolute/ckpt/path/transamerica.pt --expertmlp2seqexperts --no_amp --use_moe_external_gate --use_gate_input_norm --moe_expert_num=4
+```
 
 ## Visualization
 
