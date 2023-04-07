@@ -302,6 +302,6 @@ If you have any questions, please raise an issue or email to Zhenxing Mi (`zmiaa
 Our code follows several awesome repositories. We appreciate them for making their codes available to public.
 
 * [Mega-NeRF](https://github.com/cmusatyalab/mega-nerf)
-* [Tutel](https://github.com/xy-guo/MVSNet_pytorch)
+* [Tutel](https://github.com/microsoft/tutel/tree/56dbd664341cf6485c9fa292955f77d3ac918a65)
 * [UnboundedNeRFPytorch](https://github.com/sjtuytc/UnboundedNeRFPytorch)
 * [xrnerf](https://github.com/openxrlab/xrnerf)
