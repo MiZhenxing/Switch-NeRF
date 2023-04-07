@@ -2,6 +2,13 @@
 
 ### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://github.com/MiZhenxing/Switch-NeRF-ckpt) | [Visualizer](https://github.com/MiZhenxing/alpha_visualizer)
 
+
+## Demo
+
+![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/sci-art_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/building_image_depth_video_fps_24.gif)
+
+![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/residence_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/rubble_image_depth_video_fps_24.gif)
+
 ## Updation
 
 - 2023-03-30, stable release.
