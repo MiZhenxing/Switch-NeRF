@@ -5,13 +5,13 @@
 
 ## Demo
 
-![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/sci-art_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/building_image_depth_video_fps_24.gif)
+![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/sci-art_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/building_image_depth_video_fps_24.gif)
 
-![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/residence_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-ckpt/master/videos/rubble_image_depth_video_fps_24.gif)
+![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/residence_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/rubble_image_depth_video_fps_24.gif)
 
 ## Updation
 
-- 2023-03-30, move ckpts into onedrive
+- 2023-04-13, move ckpts to onedrive
 - 2023-03-30, stable release.
 - 2023-03-28, release the checkpoints and codes for three datasets.
 
