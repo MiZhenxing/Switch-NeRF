@@ -11,6 +11,7 @@
 
 ## Updation
 
+- 2023-03-30, move ckpts into onedrive
 - 2023-03-30, stable release.
 - 2023-03-28, release the checkpoints and codes for three datasets.
 
