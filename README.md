@@ -5,9 +5,9 @@
 
 ## Demo
 
-![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/sci-art_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/building_image_depth_video_fps_24.gif)
+![](https://raw.githubusercontent.com/MiZhenxing/Switch-NeRF-demo/master/sci-art_image_depth_video_fps_24.gif)![](https://raw.githubusercontent.com/MiZhenxing/Switch-NeRF-demo/master/building_image_depth_video_fps_24.gif)
 
-![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/residence_image_depth_video_fps_24.gif)![](https://media.githubusercontent.com/media/MiZhenxing/Switch-NeRF-demo/master/rubble_image_depth_video_fps_24.gif)
+![](https://raw.githubusercontent.com/MiZhenxing/Switch-NeRF-demo/master/residence_image_depth_video_fps_24.gif)![](https://raw.githubusercontent.com/MiZhenxing/Switch-NeRF-demo/master/rubble_image_depth_video_fps_24.gif)
 
 ## Updation
 
