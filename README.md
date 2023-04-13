@@ -164,7 +164,7 @@ The two scenes in Bungee-NeRF use the same configure file.
 
 ## Testing
 
-We provide checkpoints in this [repository](https://github.com/MiZhenxing/Switch-NeRF-ckpt).
+We provide checkpoints in [onedrive](https://hkustconnect-my.sharepoint.com/:f:/g/personal/zmiaa_connect_ust_hk/ErqiFEjmMVBCrA8-Y8Q2yTMBTPdhMFhPCnLeUYh_oSLBVQ?e=1H0H2u).
 
 Test on the Building scene in Mega-NeRF dataset.
 
