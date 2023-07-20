@@ -1,4 +1,7 @@
-# Switch-NeRF: Learning Scene Decomposition with Mixture of Experts for Large-scale Neural Radiance Fields 
+# Switch-NeRF: Learning Scene Decomposition with Mixture of Experts for Large-scale Neural Radiance Fields (ICLR 2023) 
+
+Zhenxing Mi, Dan Xu
+HKUST
 
 ### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://hkustconnect-my.sharepoint.com/:f:/g/personal/zmiaa_connect_ust_hk/ErqiFEjmMVBCrA8-Y8Q2yTMBTPdhMFhPCnLeUYh_oSLBVQ?e=1H0H2u) | [Visualizer](https://github.com/MiZhenxing/alpha_visualizer)
 
