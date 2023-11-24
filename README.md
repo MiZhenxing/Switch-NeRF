@@ -139,7 +139,7 @@ We need not to generate chunks for Bungee-NeRF scenes. We provide the example co
 ```sh
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch \
 --use_env --master_port=12345 --nproc_per_node=4 -m \
-mega_nerf.train_nerf_moe \
+switch_nerf.train_nerf_moe \
 --config=switch_nerf/configs/switch_nerf/bungee.yaml \
 --use_moe --exp_name=/your/absolute/experiment/path \
 --dataset_path=/your/absolute/scene/path/multiscale_google_Transamerica \
