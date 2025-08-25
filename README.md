@@ -1,5 +1,7 @@
 ## Learning Heterogeneous Mixture of Scene Experts for Large-scale Neural Radiance Fields (TPAMI 2025) 
 
+### [arXiv](https://arxiv.org/abs/2505.02005) | [Project Page](https://mizhenxing.github.io/switchnerf)
+
 ## Switch-NeRF: Learning Scene Decomposition with Mixture of Experts for Large-scale Neural Radiance Fields (ICLR 2023) 
 
 ### [Openreview](https://openreview.net/forum?id=PQ2zoIZqvm) | [Project Page](https://mizhenxing.github.io/switchnerf) | [Checkpoints](https://hkustconnect-my.sharepoint.com/:f:/g/personal/zmiaa_connect_ust_hk/ErqiFEjmMVBCrA8-Y8Q2yTMBTPdhMFhPCnLeUYh_oSLBVQ?e=1H0H2u) | [Visualizer](https://github.com/MiZhenxing/alpha_visualizer)
